@@ -1,20 +1,29 @@
 /*
  * CNC ESP32 (30 pins)
  * Stepper Motor 28BYJ-248 and ULN2003 driver
+ * 
+ * Required libraries:
+ * https://github.com/madhephaestus/ESP32Servo
+ * 
+ * Use the program Processing to send GCODE files to ESP32 by serial port.
+ * https://processing.org/
+ * https://github.com/mkazimoto/ESP32_CNC/blob/master/gcode_executer_ESP32.pde
  */
 
 #include <ESP32Servo.h>
 #include <Stepper.h>
 
 #define LINE_BUFFER_LENGTH 512
-#define PIN_MOTOR_A1 13
-#define PIN_MOTOR_A2 12
-#define PIN_MOTOR_A3 14
-#define PIN_MOTOR_A4 27
-#define PIN_MOTOR_B1 26
-#define PIN_MOTOR_B2 25
-#define PIN_MOTOR_B3 33
-#define PIN_MOTOR_B4 32
+
+#define PIN_MOTOR_Y1 13
+#define PIN_MOTOR_Y2 12
+#define PIN_MOTOR_Y3 14
+#define PIN_MOTOR_Y4 27
+
+#define PIN_MOTOR_X1 26
+#define PIN_MOTOR_X2 25
+#define PIN_MOTOR_X3 33
+#define PIN_MOTOR_X4 32
 
 const int penZUp = 40;
 const int penZDown = 80;
@@ -26,15 +35,15 @@ const int stepsPerRevolution = 2048;
 
 Servo penServo;  
 
-Stepper myStepperY(stepsPerRevolution, PIN_MOTOR_A1, 
-                                       PIN_MOTOR_A3,
-                                       PIN_MOTOR_A2,
-                                       PIN_MOTOR_A4);            
+Stepper myStepperY(stepsPerRevolution, PIN_MOTOR_Y1, 
+                                       PIN_MOTOR_Y3,
+                                       PIN_MOTOR_Y2,
+                                       PIN_MOTOR_Y4);            
                                        
-Stepper myStepperX(stepsPerRevolution, PIN_MOTOR_B1, 
-                                       PIN_MOTOR_B3,
-                                       PIN_MOTOR_B2,
-                                       PIN_MOTOR_B4);           
+Stepper myStepperX(stepsPerRevolution, PIN_MOTOR_X1, 
+                                       PIN_MOTOR_X3,
+                                       PIN_MOTOR_X2,
+                                       PIN_MOTOR_X4);           
 
 struct point { 
   float x; 
