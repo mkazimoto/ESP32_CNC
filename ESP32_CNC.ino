@@ -2,6 +2,9 @@
  * CNC ESP32 (30 pins)
  * Stepper Motor 28BYJ-248 and ULN2003 driver
  * 
+ * Schema:
+ * https://github.com/mkazimoto/ESP32_CNC/blob/master/CNC_ESP32_28BYJ-48_Schema.png
+ *
  * Required libraries:
  * https://github.com/madhephaestus/ESP32Servo
  * 
